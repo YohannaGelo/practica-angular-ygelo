@@ -1,2 +1,31 @@
-<h1 class="display-1">Probando bootstrap</h1>
-<i class="bi bi-alarm"></i>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">PC Components</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/bienvenida">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/busquedas">Búsquedas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/acerca-de">Acerca de</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  
+  <footer class="bg-dark text-white text-center py-3">
+    <p>Yohanna Gelo &copy; 2025 PC Components. Todos los derechos reservados.</p>
+  </footer>
