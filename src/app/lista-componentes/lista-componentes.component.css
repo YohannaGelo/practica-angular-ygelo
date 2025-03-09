@@ -1,11 +1,32 @@
 /* Estilos para la tabla */
 .table img {
-    max-width: 50px;
-    height: auto;
-  }
-  
-  /* Estilos para la paginación */
-  .pagination {
-    justify-content: center;
-    margin-top: 20px;
-  }
+  max-width: 50px;
+  height: auto;
+}
+
+/* Estilos para la paginación */
+.pagination {
+  justify-content: center;
+  margin-top: 20px;
+  cursor: pointer;
+
+}
+
+/* Cambia el color de fondo y el texto del elemento activo */
+.pagination .page-item.active .page-link {
+  background-color: #000000;
+  border-color: #000000;
+  color: white;
+}
+
+/* Estilo para las páginas no seleccionadas */
+.pagination .page-item:not(.active) .page-link {
+  color: black;
+}
+
+/* Cambia el color de fondo al pasar el ratón sobre los elementos no activos */
+.pagination .page-item:not(.active) .page-link:hover {
+  background-color: #f1f1f1;
+  border-color: #ddd;
+
+}
