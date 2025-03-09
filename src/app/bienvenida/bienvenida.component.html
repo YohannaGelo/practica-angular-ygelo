@@ -1,32 +1,48 @@
 <div class="container mt-5">
     <div class="row">
-      <div class="col text-center">
-        <h1>Componentes de un ordenador</h1>
-        <p>Pasa el ratón sobre la placa y descubre el lugar de cada componente.</p>
-      </div>
-    </div>
-    <div class="row mt-4">
-      <div class="col text-center position-relative">
-        
-        <!-- Imagen de fondo de la placa base -->
-        <img src="img/placa-base.jpg" alt="Placa base" class="img-fluid">
-  
-        <!-- Componentes interactivos -->
-        <div *ngFor="let componente of componentes" 
-             class="componente position-absolute" 
-             [ngStyle]="getPosition(componente)" 
-             (mouseenter)="mostrarTooltip(componente)" 
-             (mouseleave)="ocultarTooltip()" 
-             (mousemove)="actualizarTooltip($event)">
-          <span>{{ componente.nombre }}</span>
+        <div class="col text-center">
+            <h1>Componentes de un ordenador</h1>
+            <p>Pasa el ratón sobre la placa y descubre el lugar de cada componente.</p>
         </div>
-  
-        <!-- Tooltip -->
-        <div *ngIf="tooltipVisible" class="tooltip position-absolute" [ngStyle]="tooltipStyle">
-          <h2>{{ componenteSeleccionado?.nombre }}</h2>
-          <p>{{ componenteSeleccionado?.descripcion }}</p>
-          <img [src]="componenteSeleccionado?.url_imagen" class="img-fluid">
-        </div>
-      </div>
     </div>
-  </div>
+    <div class="row">
+        <div class="col text-center">
+            <!-- Contenedor de la placa base -->
+            <div class="placa-container">
+                <!-- Imagen de la placa base -->
+                <img src="img/placa-base.jpg" alt="Placa base" class="placa-img">
+
+                <!-- Componentes interactivos -->
+                <div *ngFor="let componente of componentes" class="componente {{ componente.tipo.toLowerCase() }}"
+                    (mouseenter)="mostrarTooltip(componente, $event)" (mouseleave)="ocultarTooltip()"
+                    (mousemove)="actualizarTooltip($event)">
+                    <span>{{ componente.tipo }}</span>
+                </div>
+
+                <!-- Tooltip -->
+                <!-- Tooltip -->
+                <div *ngIf="tooltipVisible" class="tooltip bg-white border rounded shadow p-3" [ngStyle]="tooltipStyle">
+                    <h2 class="h5 mb-3">{{ componenteSeleccionado?.tipo }}</h2>
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr *ngFor="let componente of componentesFiltrados" (click)="verDetalle(componente.id)">
+                                <td class="align-middle">
+                                    <img [src]="componente.url_imagen" class="img-thumbnail"
+                                        style="width: 50px; height: auto;">
+                                </td>
+                                <td class="align-middle">
+                                    <a [routerLink]="['/detalle-componente', componente.id]"
+                                        class="text-decoration-none text-primary">
+                                        {{ componente.nombre }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

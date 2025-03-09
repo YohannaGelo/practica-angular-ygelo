@@ -1,43 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { Componente, ComponentesService } from '../services/componentes.service';
+import {
+  Componente,
+  ComponentesService,
+} from '../services/componentes.service';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bienvenida',
   standalone: false,
   templateUrl: './bienvenida.component.html',
-  styleUrl: './bienvenida.component.css'
+  styleUrl: './bienvenida.component.css',
 })
-
-
 export class BienvenidaComponent implements OnInit {
-
-
   componentes: Componente[] = [];
+  componentesFiltrados: Componente[] = [];
   tooltipVisible = false;
   componenteSeleccionado: Componente | null = null;
   tooltipStyle = { top: '0px', left: '0px' };
 
-  constructor(private componentesService: ComponentesService) { }
+  constructor(
+    private componentesService: ComponentesService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.cargarComponentes();
   }
 
-
   cargarComponentes(): void {
     this.componentesService.getComponentes().subscribe(
-      data => {
+      (data) => {
         this.componentes = data;
         console.log('Componentes cargados:', data); // Verifica en la consola
       },
-      error => console.error('Error al cargar componentes:', error)
+      (error) => console.error('Error al cargar componentes:', error)
     );
   }
-  
 
-  mostrarTooltip(componente: Componente): void {
+  mostrarTooltip(componente: Componente, event: MouseEvent): void {
+    console.log('Mostrar tooltip para:', componente); // <-- Verifica que se ejecute
     this.componenteSeleccionado = componente;
     this.tooltipVisible = true;
+    this.filtrarComponentesPorTipo(componente.tipo); // <-- Filtra los componentes por tipo
+    this.actualizarTooltip(event);
   }
 
   ocultarTooltip(): void {
@@ -45,25 +51,43 @@ export class BienvenidaComponent implements OnInit {
   }
 
   actualizarTooltip(event: MouseEvent): void {
+    const offset = 15;
+    const tooltipHeight = 300;
+    const tooltipWidth = 400;
+    const windowHeight = window.innerHeight;
+    const windowWidth = window.innerWidth;
+
+    // Posición horizontal
+    let left: number;
+    if (event.clientX > windowWidth / 2) {
+      left = event.clientX - tooltipWidth * 1.5; // Muestra el tooltip a la izquierda del ratón
+    } else {
+      left = event.clientX + offset; // Muestra el tooltip a la derecha del ratón
+    }
+
+    // Posición vertical
+    let top: number;
+    if (event.clientY > windowHeight / 2) {
+      top = event.clientY - tooltipHeight/2; // Muestra el tooltip arriba del ratón
+    } else {
+      top = event.clientY + offset; // Muestra el tooltip abajo del ratón
+    }
+
+    // Actualiza el estilo del tooltip
     this.tooltipStyle = {
-      top: `${event.clientY + 15}px`,
-      left: `${event.clientX + 15}px`
+      top: `${top}px`,
+      left: `${left}px`,
     };
   }
 
-  getPosition(componente: Componente): any {
-    // Define las posiciones de los componentes en la placa base
-    const posiciones: { [key: number]: { top: string, left: string } } = {
-      1: { top: '20%', left: '30%' }, // CPU
-      2: { top: '40%', left: '50%' }, // GPU
-      3: { top: '10%', left: '70%' }, // RAM
-      4: { top: '60%', left: '20%' }, // SSD
-      5: { top: '50%', left: '40%' }, // Placa
-      6: { top: '70%', left: '60%' }, // PSU
-      7: { top: '80%', left: '10%' }, // Refri
-      8: { top: '90%', left: '80%' }  // Conexiones
-    };
+  filtrarComponentesPorTipo(tipo: string): void {
+    this.componentesFiltrados = this.componentes.filter(
+      (componente) => componente.tipo.toLowerCase() === tipo.toLowerCase()
+    );
+    console.log('Componentes filtrados:', this.componentesFiltrados); // <-- Añade este console.log
+  }
 
-    return posiciones[componente.id] || { top: '0%', left: '0%' };
+  verDetalle(id: number): void {
+    this.router.navigate(['/detalle-componente', id]);
   }
 }
