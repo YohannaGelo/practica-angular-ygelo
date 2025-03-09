@@ -79,6 +79,7 @@ p {
   top: 6%;    /* Posición relativa a la placa base */
   left: 2.5%;   /* Posición relativa a la placa base */
   z-index: 0;
+  cursor: cell;
 }
 
 .cpu {

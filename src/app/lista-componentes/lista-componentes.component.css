@@ -1,0 +1,11 @@
+/* Estilos para la tabla */
+.table img {
+    max-width: 50px;
+    height: auto;
+  }
+  
+  /* Estilos para la paginación */
+  .pagination {
+    justify-content: center;
+    margin-top: 20px;
+  }

@@ -5,6 +5,7 @@ import { BusquedasComponent } from './busquedas/busquedas.component';
 import { AcercaDeComponent } from './acerca-de/acerca-de.component';
 import { ListaComponentesComponent } from './lista-componentes/lista-componentes.component';
 import { DetalleComponenteComponent } from './detalle-componente/detalle-componente.component';
+import { EditarComponenteComponent } from './editar-componente/editar-componente.component';
 import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component';
 
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'acerca-de', component: AcercaDeComponent },
   { path: 'lista-componentes', component: ListaComponentesComponent },
   { path: 'detalle-componente/:id', component: DetalleComponenteComponent },
+  { path: 'editar-componente/:id', component: EditarComponenteComponent },
   { path: '**', component: PaginaNoEncontradaComponent }
 ];
 

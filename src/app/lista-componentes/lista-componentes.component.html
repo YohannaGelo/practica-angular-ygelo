@@ -1,1 +1,59 @@
-<p>lista-componentes works!</p>
+<div class="container mt-5">
+    <h2>Lista de Componentes</h2>
+  
+    <!-- Filtros -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <input [(ngModel)]="filtroNombre" type="text" class="form-control" placeholder="Buscar por nombre">
+      </div>
+      <div class="col-md-6">
+        <input [(ngModel)]="filtroTipo" type="text" class="form-control" placeholder="Buscar por tipo">
+      </div>
+    </div>
+  
+    <!-- Tabla de componentes -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Imagen</th>
+          <th>Tipo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Fila para agregar un nuevo componente -->
+        <tr>
+          <td><input [(ngModel)]="nuevoComponente.nombre" class="form-control" placeholder="Nombre"></td>
+          <td><input [(ngModel)]="nuevoComponente.descripcion" class="form-control" placeholder="Descripción"></td>
+          <td><input [(ngModel)]="nuevoComponente.url_imagen" class="form-control" placeholder="URL de la imagen"></td>
+          <td><input [(ngModel)]="nuevoComponente.tipo" class="form-control" placeholder="Tipo"></td>
+          <td>
+            <button (click)="agregarComponente()" class="btn btn-success">Agregar</button>
+          </td>
+        </tr>
+  
+        <!-- Filas de componentes -->
+        <tr *ngFor="let componente of componentesPaginados">
+          <td>{{ componente.nombre }}</td>
+          <td>{{ componente.descripcion }}</td>
+          <td><img [src]="componente.url_imagen" alt="{{ componente.nombre }}" style="width: 50px; height: auto;"></td>
+          <td>{{ componente.tipo }}</td>
+          <td>
+            <button (click)="verDetalles(componente.id)" class="btn btn-primary btn-sm me-2">Detalles</button>
+            <button (click)="eliminarComponente(componente.id)" class="btn btn-danger btn-sm">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Paginación -->
+    <nav aria-label="Paginación">
+      <ul class="pagination">
+        <li class="page-item" *ngFor="let pagina of getPaginas()" [class.active]="pagina === paginaActual">
+          <a class="page-link" (click)="cambiarPagina(pagina)">{{ pagina }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>

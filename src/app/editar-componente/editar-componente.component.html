@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <div *ngIf="isLoading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="mt-2">Cargando detalles del componente...</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  
+    <div *ngIf="componente && !isLoading" class="card">
+      <div class="card-body">
+        <h2 class="card-title">Editar Componente</h2>
+        <form (ngSubmit)="guardarCambios()">
+          <!-- Campo oculto para el ID -->
+          <input type="hidden" [(ngModel)]="componente.id" name="id">
+  
+          <!-- Campos editables -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input [(ngModel)]="componente.nombre" type="text" class="form-control" id="nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea [(ngModel)]="componente.descripcion" class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="url_imagen" class="form-label">URL de la Imagen</label>
+            <input [(ngModel)]="componente.url_imagen" type="text" class="form-control" id="url_imagen" name="url_imagen" required>
+          </div>
+          <div class="mb-3">
+            <label for="tipo" class="form-label">Tipo</label>
+            <input [(ngModel)]="componente.tipo" type="text" class="form-control" id="tipo" name="tipo" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          <a [routerLink]="['/detalle-componente', componente.id]" class="btn btn-secondary ms-2">Cancelar</a>
+        </form>
+      </div>
+    </div>
+  </div>
