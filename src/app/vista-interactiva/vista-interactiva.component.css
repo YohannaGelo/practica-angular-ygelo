@@ -24,7 +24,7 @@ p {
   position: relative;
   width: 100%;
   max-width: 1000px;
-  /* Ancho máximo de la placa base */
+  min-width: 350px;
   margin: 0 auto;
 }
 
@@ -44,7 +44,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: help;
   z-index: 1;
 
 }
@@ -53,10 +53,8 @@ p {
 .tooltip {
   text-align: center;
   background-color: yellow;
-  /* height: 300px;
-  width: 400px; */
-  height: 40vh;
-  width: 35vw;
+  height: 37vh;
+  width: 20vw;
   opacity: 95%;
   border-radius: 10px;
   position: absolute;
@@ -67,21 +65,9 @@ p {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  pointer-events: auto; /* Permitir interacción en dispositivos táctiles */
 }
 
-@media screen and (max-width: 992px) {
-  .tooltip {
-    height: 30vh;
-    width: 20vw;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .tooltip {
-    height: 10vh;
-    width: 10vw;
-  }
-}
 
 .img-comp {
   width: auto;
@@ -89,17 +75,13 @@ p {
   border-radius: 5px;
 }
 
-/* Estilos específicos para cada tipo de componente */
+/* Estilos específicos para cada tipo de componente - relativo a la placa base*/
 .placa {
   /* background-color: rgb(136, 255, 0); */
   height: 92%;
-  /* Altura relativa a la placa base */
   width: 95%;
-  /* Ancho relativo a la placa base */
   top: 6%;
-  /* Posición relativa a la placa base */
   left: 2.5%;
-  /* Posición relativa a la placa base */
   z-index: 0;
   cursor: cell;
 }

@@ -6,25 +6,28 @@ import {
 } from '../services/componentes.service';
 
 import { Router } from '@angular/router';
-import { right } from '@popperjs/core';
 
 @Component({
   selector: 'app-vista-interactiva',
   standalone: false,
   templateUrl: './vista-interactiva.component.html',
-  styleUrl: './vista-interactiva.component.css'
+  styleUrl: './vista-interactiva.component.css',
 })
-export class VistaInteractivaComponent implements OnInit  {
+export class VistaInteractivaComponent implements OnInit {
   componentes: Componente[] = [];
   componentesFiltrados: Componente[] = [];
   tooltipVisible = false;
   componenteSeleccionado: Componente | null = null;
-  tooltipStyle = { top: '0px', left: '0px', width: '0px', height: '0px' };
+  tooltipStyle: any = {};
+  isTouchDevice = false;
 
   constructor(
     private componentesService: ComponentesService,
     private router: Router
-  ) {}
+  ) {
+    this.isTouchDevice =
+      'ontouchstart' in window || navigator.maxTouchPoints > 0; // Detectar si es un dispositivo táctil
+  }
 
   ngOnInit(): void {
     this.cargarComponentes();
@@ -40,98 +43,82 @@ export class VistaInteractivaComponent implements OnInit  {
     );
   }
 
-  mostrarTooltip(componente: Componente, event: MouseEvent): void {
-    console.log('Mostrar tooltip para:', componente); // <-- Verifica que se ejecute
+  mostrarTooltip(componente: Componente, event: MouseEvent | TouchEvent): void {
+    console.log('Mostrar tooltip para:', componente); // Verifica que se ejecute
     this.componenteSeleccionado = componente;
     this.tooltipVisible = true;
-    this.filtrarComponentesPorTipo(componente.tipo); // <-- Filtra los componentes por tipo
-    this.actualizarTooltip(event);
+    this.filtrarComponentesPorTipo(componente.tipo); // Filtra los componentes por tipo
+
+    // Obtener las coordenadas del evento
+    const clientX =
+      event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
+    const clientY =
+      event instanceof MouseEvent ? event.clientY : event.touches[0].clientY;
+
+    this.actualizarTooltip(clientX, clientY);
+  }
+
+  evitarOcultarTooltip(): void {
+    // No hacer nada, solo evitar que el tooltip se oculte
   }
 
   ocultarTooltip(): void {
     this.tooltipVisible = false;
   }
 
-  actualizarTooltip(event: MouseEvent): void {
-    const offset = 15;
-    const windowHeight = window.innerHeight;
-    const windowWidth = window.innerWidth;
-  
-    // Establece el tamaño del tooltip proporcional al tamaño de la ventana
-    const tooltipWidth = windowWidth < 768 ? windowWidth * 0.8 : 400; // 80% del ancho en móviles
-    const tooltipHeight = windowHeight < 768 ? windowHeight * 0.4 : 300; // 40% del alto en móviles
-  
-    let left: number;
-    let top: number;
-  
-    // Ajustar la posición horizontal en función de la posición del ratón
-    if (event.clientX > windowWidth / 2) {
-      left = event.clientX - (tooltipWidth * 2.3) - offset; // Muestra el tooltip a la izquierda del ratón
-    } else {
-      left = event.clientX - tooltipWidth - offset; // Muestra el tooltip a la derecha del ratón
+  actualizarTooltip(clientX: number, clientY: number): void {
+    const placaContainer = document.querySelector(
+      '.placa-container'
+    ) as HTMLElement;
+    const placaRect = placaContainer.getBoundingClientRect();
+
+
+    const tooltipWidth = placaRect.width * (placaRect.height < 500 ? 0.5 : 0.3); // 50% si es menor a 500px, 30% si no
+    const tooltipHeight = placaRect.height * (placaRect.height < 500 ? 0.8 : 0.4); // 80% si es menor a 500px, 40% si no
+
+    // Coordenadas relativas al componente padre
+    const mouseX = clientX - placaRect.left;
+    const mouseY = clientY - placaRect.top;
+
+    let tooltipLeft = mouseX + 20; // Desplazamiento horizontal desde el ratón
+    let tooltipTop = mouseY + 20; // Desplazamiento vertical desde el ratón
+
+    // Si el ratón está a la derecha de la mitad del contenedor, el tooltip se coloca a la izquierda
+    if (mouseX > placaRect.width / 2) {
+      tooltipLeft = mouseX - tooltipWidth - 20;
     }
-  
-    // Ajustar la posición vertical en función de la posición del ratón
-    if (event.clientY > windowHeight / 2) {
-      top = event.clientY - (tooltipHeight * 2) + offset; // Muestra el tooltip arriba del ratón
-    } else {
-      top = event.clientY - (tooltipHeight / 2); // Muestra el tooltip abajo del ratón
+
+    // Si el ratón está en la mitad inferior del contenedor, el tooltip se coloca arriba
+    if (mouseY > placaRect.height / 2) {
+      tooltipTop = mouseY - tooltipHeight - 20;
     }
-  
-    // Ajustar si el tooltip se sale del lado derecho
-    if (left + tooltipWidth > windowWidth) {
-      left = windowWidth - tooltipWidth - offset;
+
+    // Asegurarse de que el tooltip no se salga de los límites del contenedor
+    if (tooltipLeft + tooltipWidth > placaRect.width) {
+      tooltipLeft = placaRect.width - tooltipWidth;
     }
-  
-    // Ajustar si el tooltip se sale del lado inferior
-    if (top + tooltipHeight > windowHeight) {
-      top = windowHeight - tooltipHeight - offset;
+    if (tooltipLeft < 0) {
+      tooltipLeft = 0;
     }
-  
-    // Asegura que no haya valores negativos
-    left = Math.max(left, offset);
-    top = Math.max(top, offset);
-  
-    // Actualiza el estilo del tooltip
+
+    if (tooltipTop + tooltipHeight > placaRect.height) {
+      tooltipTop = placaRect.height - tooltipHeight;
+    }
+    if (tooltipTop < 0) {
+      tooltipTop = 0;
+    }
+
     this.tooltipStyle = {
-      top: `${top}px`,
-      left: `${left}px`,
-      width: `${tooltipWidth}px`,   // Mantén el tamaño proporcional
-      height: `${tooltipHeight}px`, // Mantén el tamaño proporcional
+      left: `${tooltipLeft}px`,
+      top: `${tooltipTop}px`,
+      width: `${tooltipWidth}px`, // Asignar el ancho calculado
+      height: `${tooltipHeight}px`, // Asignar el alto calculado
     };
   }
-  
-  
 
-  // actualizarTooltip(event: MouseEvent): void {
-  //   const offset = 15;
-  //   const tooltipHeight = 300;
-  //   const tooltipWidth = 400;
-  //   const windowHeight = window.innerHeight;
-  //   const windowWidth = window.innerWidth;
-
-  //   // Posición horizontal
-  //   let left: number;
-  //   if (event.clientX > windowWidth / 2) {
-  //     left = event.clientX - (tooltipWidth * 2.3) - offset; // Muestra el tooltip a la izquierda del ratón
-  //   } else {
-  //     left = event.clientX - tooltipWidth - offset; // Muestra el tooltip a la derecha del ratón
-  //   }
-
-  //   // Posición vertical
-  //   let top: number;
-  //   if (event.clientY > windowHeight / 2) {
-  //     top = event.clientY - (tooltipHeight * 2) + offset; // Muestra el tooltip arriba del ratón
-  //   } else {
-  //     top = event.clientY - (tooltipHeight / 2); // Muestra el tooltip abajo del ratón
-  //   }
-
-  //   // Actualiza el estilo del tooltip
-  //   this.tooltipStyle = {
-  //     top: `${top}px`,
-  //     left: `${left}px`,
-  //   };
-  // }
+  cerrarTooltip(): void {
+    this.tooltipVisible = false;
+  }
 
   filtrarComponentesPorTipo(tipo: string): void {
     this.componentesFiltrados = this.componentes.filter(

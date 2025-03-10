@@ -13,18 +13,16 @@
                 <img src="img/placa-base.jpg" alt="Placa base" class="placa-img" [style.max-height.px]="600">
 
                 <!-- Componentes interactivos -->
-                <a [routerLink]="['/lista-componentes']" class="text-decoration-none">
                 <div *ngFor="let componente of componentes" class="componente {{ componente.tipo.toLowerCase() }}"
-                    (mouseenter)="mostrarTooltip(componente, $event)" (mouseleave)="ocultarTooltip()"
-                    (mousemove)="actualizarTooltip($event)">
-                    <!-- <span>{{ componente.tipo }}</span> -->
-                        
-                    </div>
-                </a>
+                    (mouseenter)="mostrarTooltip(componente, $event)" (touchstart)="mostrarTooltip(componente, $event)"
+                    (mouseleave)="ocultarTooltip()" (touchend)="ocultarTooltip()">
+                </div>
 
                 <!-- Tooltip -->
-                <div *ngIf="tooltipVisible" class="tooltip bg-white border rounded shadow p-3" [ngStyle]="tooltipStyle">
+                <div *ngIf="tooltipVisible" class="tooltip bg-white border rounded shadow p-3" [ngStyle]="tooltipStyle"
+                    (mouseenter)="evitarOcultarTooltip()" (mouseleave)="ocultarTooltip()">
                     <h2 class="display-6 mb-3">{{ componenteSeleccionado?.tipo }}</h2>
+
                     <table class="table table-hover">
                         <tbody>
                             <tr *ngFor="let componente of componentesFiltrados" (click)="verDetalle(componente.id)">
@@ -41,7 +39,10 @@
                             </tr>
                         </tbody>
                     </table>
+                    <!-- Botón para cerrar el tooltip en dispositivos táctiles -->
+                    <button *ngIf="isTouchDevice" class="btn btn-dark mt-3" (click)="cerrarTooltip()">Cerrar</button>
                 </div>
+
 
 
             </div>
