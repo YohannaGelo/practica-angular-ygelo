@@ -1,5 +1,6 @@
 <?php
 require_once 'Componente.php';
+require_once 'TipoComponente.php';
 
 header("Content-Type: application/json;charset=utf-8");
 header("Access-Control-Allow-Origin: http://localhost:4200");
@@ -28,6 +29,9 @@ try {
                     $codEstado = 404;
                     $devolver = ['error' => 'Componente no encontrado'];
                 }
+            } elseif (isset($_GET['tipo'])) {
+                $tipos = TipoComponente::getTiposComponentes();
+                $devolver = $tipos;
             } else {
                 $devolver = Componente::getComponentes();
             }
@@ -35,14 +39,14 @@ try {
 
         case 'POST':
             $datos = json_decode(file_get_contents("php://input"), true);
-            $componente = new Componente(0, $datos['nombre'], $datos['descripcion'], $datos['url_imagen'], $datos['tipo']);
+            $componente = new Componente(0, $datos['nombre'], $datos['descripcion'], $datos['url_imagen'], $datos['tipo_id']);
             $componente->insert();
             $devolver = ['mensaje' => 'Componente insertado correctamente'];
             break;
 
         case 'PUT':
             $datos = json_decode(file_get_contents("php://input"), true);
-            $componente = new Componente($datos['id'], $datos['nombre'], $datos['descripcion'], $datos['url_imagen'], $datos['tipo']);
+            $componente = new Componente($datos['id'], $datos['nombre'], $datos['descripcion'], $datos['url_imagen'], $datos['tipo_id']);
             $componente->update();
             $devolver = ['mensaje' => 'Componente actualizado correctamente'];
             break;

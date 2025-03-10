@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { ComponentesService, Componente } from '../services/componentes.service';
+import {
+  ComponentesService,
+  Componente,
+} from '../services/componentes.service';
 
 @Component({
   selector: 'app-lista-componentes',
@@ -11,12 +14,13 @@ import { ComponentesService, Componente } from '../services/componentes.service'
 })
 export class ListaComponentesComponent {
   componentes: Componente[] = []; // Lista de componentes
+  tiposComponentes: Componente[] = [];
   nuevoComponente: Componente = {
     id: 0,
     nombre: '',
     descripcion: '',
     url_imagen: '',
-    tipo: '',
+    tipo_id: 0,
   }; // Objeto para nuevo componente
   filtroNombre: string = ''; // Filtro por nombre
   filtroTipo: string = ''; // Filtro por tipo
@@ -30,6 +34,7 @@ export class ListaComponentesComponent {
 
   ngOnInit(): void {
     this.cargarComponentes();
+    this.cargarTiposComponentes();
   }
 
   cargarComponentes(): void {
@@ -43,6 +48,17 @@ export class ListaComponentesComponent {
     );
   }
 
+  cargarTiposComponentes(): void {
+    this.componentesService.getTiposComponentes().subscribe(
+      (data) => {
+        this.tiposComponentes = data;
+      },
+      (error) => {
+        console.error('Error al cargar tipos de componentes:', error);
+      }
+    );
+  }
+
   agregarComponente(): void {
     this.componentesService.agregarComponente(this.nuevoComponente).subscribe(
       (data) => {
@@ -52,8 +68,11 @@ export class ListaComponentesComponent {
           nombre: '',
           descripcion: '',
           url_imagen: '',
-          tipo: '',
+          tipo_id: 0,
         }; // Limpia el formulario
+
+        // Recargar la página
+        window.location.reload();
       },
       (error) => {
         console.error('Error al agregar componente:', error);
@@ -89,7 +108,9 @@ export class ListaComponentesComponent {
         componente.nombre
           .toLowerCase()
           .includes(this.filtroNombre.toLowerCase()) &&
-        componente.tipo.toLowerCase().includes(this.filtroTipo.toLowerCase())
+        componente.tipo_nombre
+          ?.toLowerCase()
+          .includes(this.filtroTipo.toLowerCase())
     );
   }
 
@@ -105,7 +126,9 @@ export class ListaComponentesComponent {
   }
 
   getPaginas(): number[] {
-    const totalPaginas = Math.ceil(this.componentesFiltrados.length / this.itemsPorPagina);
+    const totalPaginas = Math.ceil(
+      this.componentesFiltrados.length / this.itemsPorPagina
+    );
     return Array.from({ length: totalPaginas }, (_, i) => i + 1);
   }
 }

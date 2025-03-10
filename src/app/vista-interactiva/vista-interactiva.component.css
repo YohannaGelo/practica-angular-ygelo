@@ -53,7 +53,7 @@ p {
 .tooltip {
   text-align: center;
   background-color: yellow;
-  height: 37vh;
+  height: 40vh;
   width: 20vw;
   opacity: 95%;
   border-radius: 10px;
@@ -118,7 +118,7 @@ p {
   left: 4%;
 }
 
-.refrigeración {
+.disipador {
   background-color: aqua;
   height: 17%;
   width: 14%;

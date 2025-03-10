@@ -28,11 +28,17 @@
           </div>
           <div class="mb-3">
             <label for="url_imagen" class="form-label">URL de la Imagen</label>
-            <input [(ngModel)]="componente.url_imagen" type="text" class="form-control" id="url_imagen" name="url_imagen" required>
+            <div class="d-flex align-items-center">
+              <img *ngIf="componente.url_imagen" [src]="componente.url_imagen" alt="Imagen de vista previa" class="img-thumbnail me-2" style="width: 80px; height: 80px; object-fit: cover;">
+              <input [(ngModel)]="componente.url_imagen" type="text" class="form-control" id="url_imagen" name="url_imagen" required>
+            </div>
           </div>
           <div class="mb-3">
             <label for="tipo" class="form-label">Tipo</label>
-            <input [(ngModel)]="componente.tipo" type="text" class="form-control" id="tipo" name="tipo" required>
+            <select [(ngModel)]="componente.tipo_id" class="form-control" id="tipo_id" name="tipo_id">
+              <option value="">Selecciona un tipo</option>
+              <option *ngFor="let tipo of tiposComponentes" [value]="tipo.id">{{ tipo.nombre }}</option>
+            </select>
           </div>
           <button type="submit" class="btn btn-secondary">Guardar Cambios</button>
           <a [routerLink]="['/detalle-componente', componente.id]" class="btn btn-dark ms-2">Cancelar</a>

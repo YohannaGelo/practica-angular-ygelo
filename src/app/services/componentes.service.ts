@@ -9,7 +9,10 @@ export interface Componente {
   nombre: string;
   descripcion: string;
   url_imagen: string;
-  tipo: string;
+  tipo_id: number;
+  tipo_nombre?: string; // Opcional, para mostrar el nombre del tipo
+  descripcion_educativa?: string; // Opcional, para mostrar la descripción educativa
+  tipo_imagen_url?: string; // Nuevo campo, para mostrar la URL de la imagen del tipo
 }
 
 
@@ -39,12 +42,9 @@ export class ComponentesService {
     return this.http.post<Componente>(this.apiUrl, componente);
   }
 
-  // actualizarComponente(componente: Componente): Observable<Componente> {
-  //   return this.http.put<Componente>(`${this.apiUrl}?id=${componente.id}`, componente);
-  // }
 
   actualizarComponente(componente: Componente): Observable<Componente> {
-    const url = `${this.apiUrl}`; // <-- No incluyas el id en la URL
+    const url = `${this.apiUrl}`; // <-- No se incluye el id en la URL
     return this.http.put<Componente>(url, componente, {
       headers: { 'Content-Type': 'application/json' }
     });
@@ -52,8 +52,12 @@ export class ComponentesService {
 
   
   eliminarComponente(id: number): Observable<void> {
-    const url = `${this.apiUrl}`; // <-- No incluyas el id en la URL
+    const url = `${this.apiUrl}`; // <-- No se incluye el id en la URL
     const body = { id: id }; // <-- Envía el id en el cuerpo de la solicitud
     return this.http.delete<void>(url, { body: body });
+  }
+
+  getTiposComponentes(): Observable<Componente[]> {
+    return this.http.get<Componente[]>(`${this.apiUrl}?tipo=tipos`);
   }
 }

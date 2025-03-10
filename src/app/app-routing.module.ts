@@ -7,6 +7,7 @@ import { DetalleComponenteComponent } from './detalle-componente/detalle-compone
 import { EditarComponenteComponent } from './editar-componente/editar-componente.component';
 import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component';
 import { VistaInteractivaComponent } from './vista-interactiva/vista-interactiva.component';
+import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'detalle-componente/:id', component: DetalleComponenteComponent },
   { path: 'editar-componente/:id', component: EditarComponenteComponent },
   { path: 'vista-interactiva', component: VistaInteractivaComponent },
+  { path: 'pdf-viewer', component: PdfViewerComponent },
   { path: '**', component: PaginaNoEncontradaComponent }
 ];
 

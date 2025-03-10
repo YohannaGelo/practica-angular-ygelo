@@ -14,6 +14,8 @@ import { ListaComponentesComponent } from './lista-componentes/lista-componentes
 import { EditarComponenteComponent } from './editar-componente/editar-componente.component';
 import { MiTextoPipe } from './mi-texto.pipe';
 import { VistaInteractivaComponent } from './vista-interactiva/vista-interactiva.component';
+import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { VistaInteractivaComponent } from './vista-interactiva/vista-interactiva
     ListaComponentesComponent,
     EditarComponenteComponent,
     MiTextoPipe,
-    VistaInteractivaComponent
+    VistaInteractivaComponent,
+    PdfViewerComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

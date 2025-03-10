@@ -8,23 +8,25 @@ import { NoticiasService } from '../services/noticias.service';
   styleUrl: './bienvenida.component.css',
 })
 export class BienvenidaComponent implements OnInit {
+  noticias: any[] = []; // Almacena las noticias
 
-    noticias: any[] = []; // Almacena las noticias
-  
-    constructor(private noticiasService: NoticiasService) { }
-  
-    ngOnInit(): void {
-      this.cargarNoticias();
-    }
-  
-    cargarNoticias(): void {
-      this.noticiasService.getNoticias().subscribe(
-        (data: any) => {
-          this.noticias = data.articles; // Asigna las noticias a la variable
-        },
-        (error) => {
-          console.error('Error al cargar noticias:', error);
-        }
-      );
-    }
+  constructor(private noticiasService: NoticiasService) {}
+
+  ngOnInit(): void {
+    this.cargarNoticias();
+  }
+
+  cargarNoticias(): void {
+    this.noticiasService.getNoticias().subscribe(
+      (data: any) => {
+        this.noticias = data.articles; // Asigna las noticias a la variable
+
+        // Reordenar las noticias en posiciones aleatorias
+        this.noticias.sort(() => Math.random() - 0.5); // Esto mezcla el array de noticias
+      },
+      (error) => {
+        console.error('Error al cargar noticias:', error);
+      }
+    );
+  }
 }

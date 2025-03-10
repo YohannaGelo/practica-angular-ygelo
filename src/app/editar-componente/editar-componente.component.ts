@@ -9,9 +9,10 @@ import { ComponentesService, Componente } from '../services/componentes.service'
   styleUrls: ['./editar-componente.component.css']
 })
 export class EditarComponenteComponent implements OnInit {
-  componente: Componente = { id: 0, nombre: '', descripcion: '', url_imagen: '', tipo: '' }; // Objeto para el componente
+  componente: Componente = { id: 0, nombre: '', descripcion: '', url_imagen: '', tipo_id: 0 }; // Objeto para el componente
   isLoading = true; // Para mostrar un spinner mientras se carga la información
   errorMessage: string | null = null; // Para manejar errores
+  tiposComponentes: Componente[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +28,7 @@ export class EditarComponenteComponent implements OnInit {
       this.errorMessage = 'No se proporcionó un ID válido.';
       this.isLoading = false;
     }
+    this.cargarTiposComponentes(); // Carga la lista de tipos de componentes
   }
 
   cargarComponente(id: number): void {
@@ -39,6 +41,17 @@ export class EditarComponenteComponent implements OnInit {
         this.errorMessage = 'Error al cargar los detalles del componente.';
         this.isLoading = false;
         console.error(error);
+      }
+    );
+  }
+
+  cargarTiposComponentes(): void {
+    this.componentesService.getTiposComponentes().subscribe(
+      (data) => {
+        this.tiposComponentes = data; // Asigna los datos a la lista de tipos de componentes
+      },
+      (error) => {
+        console.error('Error al cargar tipos de componentes:', error);
       }
     );
   }

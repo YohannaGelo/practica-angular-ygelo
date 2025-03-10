@@ -1,0 +1,19 @@
+/* Establecer fondo blanco por defecto para todos los botones */
+.accordion-button {
+    background-color: white !important;
+    color: rgb(0, 0, 0);
+
+}
+
+/* Efecto de hover */
+.accordion-button:hover {
+    background-color: #ff69b4 !important;
+    color: white;
+}
+
+/* Cambiar el color de fondo cuando está activo o seleccionado */
+.accordion-button:not(.collapsed) {
+    background-color: #e9ecef !important;
+    color: rgb(0, 0, 0);
+
+}

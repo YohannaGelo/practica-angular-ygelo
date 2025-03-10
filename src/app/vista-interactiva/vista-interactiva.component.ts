@@ -47,7 +47,8 @@ export class VistaInteractivaComponent implements OnInit {
     console.log('Mostrar tooltip para:', componente); // Verifica que se ejecute
     this.componenteSeleccionado = componente;
     this.tooltipVisible = true;
-    this.filtrarComponentesPorTipo(componente.tipo); // Filtra los componentes por tipo
+    // Filtra los componentes por tipo_id
+    this.filtrarComponentesPorTipo(componente.tipo_id);
 
     // Obtener las coordenadas del evento
     const clientX =
@@ -72,9 +73,9 @@ export class VistaInteractivaComponent implements OnInit {
     ) as HTMLElement;
     const placaRect = placaContainer.getBoundingClientRect();
 
-
     const tooltipWidth = placaRect.width * (placaRect.height < 500 ? 0.5 : 0.3); // 50% si es menor a 500px, 30% si no
-    const tooltipHeight = placaRect.height * (placaRect.height < 500 ? 0.8 : 0.4); // 80% si es menor a 500px, 40% si no
+    const tooltipHeight =
+      placaRect.height * (placaRect.height < 500 ? 0.8 : 0.44); // 80% si es menor a 500px, 40% si no
 
     // Coordenadas relativas al componente padre
     const mouseX = clientX - placaRect.left;
@@ -120,9 +121,9 @@ export class VistaInteractivaComponent implements OnInit {
     this.tooltipVisible = false;
   }
 
-  filtrarComponentesPorTipo(tipo: string): void {
+  filtrarComponentesPorTipo(tipoId: number): void {
     this.componentesFiltrados = this.componentes.filter(
-      (componente) => componente.tipo.toLowerCase() === tipo.toLowerCase()
+      (componente) => componente.tipo_id === tipoId
     );
     console.log('Componentes filtrados:', this.componentesFiltrados); // <-- Añade este console.log
   }

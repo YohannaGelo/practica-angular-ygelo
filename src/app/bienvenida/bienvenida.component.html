@@ -1,31 +1,83 @@
 <div class="container mt-5">
-    <!-- Introducción a la página -->
-    <div class="row mb-4">
-      <div class="col text-center">
-        <h1 class="display-4">Noticias de Tecnología</h1>
-        <p class="lead">Mantente al día con las últimas noticias sobre tecnología e innovación.</p>
-      </div>
-    </div>
-  
-    <!-- Carrusel de noticias -->
-    <div id="carouselNoticias" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div *ngFor="let noticia of noticias; let i = index" class="carousel-item" [class.active]="i === 0">
-          <img [src]="noticia.urlToImage" class="d-block w-100" [alt]="noticia.title" style="max-height: 400px; object-fit: cover;">
-          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-3 rounded">
-            <h5>{{ noticia.title }}</h5>
-            <p>{{ noticia.description }}</p>
-            <a [href]="noticia.url" target="_blank" class="btn btn-primary">Leer más</a>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselNoticias" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselNoticias" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-      </button>
+
+  <!-- Sección de bienvenida -->
+  <div class="row mb-4">
+    <div class="col text-center">
+      <h1 class="display-5 animate__animated animate__fadeInUp">Bienvenido a Tecnología 360</h1>
+      <p class="lead" [innerHTML]="'Explora un poco el mundo de los ordenadores. Componentes, últimas noticias y una pizca de aprendizaje.' | miTexto">
     </div>
   </div>
+
+<!-- Sección de características principales -->
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-body d-flex align-items-center">
+        <!-- Icono a la izquierda -->
+        <i class="bi bi-motherboard fs-1 text-dark me-4 ms-1"></i>
+        <!-- Contenido de la tarjeta -->
+        <div>
+          <h5 class="card-title">Componentes de PC</h5>
+          <p class="card-text">Explora nuestro listado de componentes y ayúdanos a ampliarlo.</p>
+          <a href="#" class="btn btn-secondary">Ver más</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mb-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-body d-flex align-items-center">
+        <!-- Icono a la izquierda -->
+        <i class="bi bi-tools fs-1 text-dark me-4 ms-2"></i>
+        <!-- Contenido de la tarjeta -->
+        <div>
+          <h5 class="card-title">Guías y tutoriales</h5>
+          <p class="card-text">Un poco de ayuda para comenzar en este mundo.</p>
+          <a routerLink="/lista-componentes" class="btn btn-secondary">Leer más</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Sección plca base -->
+  <div class="text-white p-5 text-center mt-3 rounded shadow-sm mi-bg">
+    <h1>Descubre los componentes de una placa base</h1>
+    <p class="lead">Aprende dónde va cada componente en una placa base... ¡Estarás más cerca de montar tu propio PC!</p>
+    <a routerLink="/vista-interactiva" class="btn btn-light btn-lg" [innerHTML]="'Vista Interactiva' | miTexto"></a>
+  </div>
+
+  <!-- Sección noticias -->
+  <div class="row mb-4 mt-5">
+    <div class="col text-center">
+      <h1 class="display-5">Noticias de Tecnología</h1>
+      <p class="lead" [innerHTML]="'Mantente al día con las últimas noticias sobre tecnología e innovación.' | miTexto">
+      </p>
+    </div>
+  </div>
+
+  <!-- Carrusel de noticias -->
+  <div id="carouselNoticias" class="carousel slide shadow-sm" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div *ngFor="let noticia of noticias; let i = index" class="carousel-item" [class.active]="i === 0">
+        <img [src]="noticia.urlToImage" class="d-block w-100 opacity-50" [alt]="noticia.title"
+          style="max-height: 300px; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-3 rounded">
+          <h5>{{ noticia.title | uppercase }}</h5>
+          <p>{{ noticia.description }}</p>
+          <p class="small pink">Publicada: {{ noticia.publishedAt | date:'dd/MM/yyyy HH:mm' }}</p>
+          <a [href]="noticia.url" target="_blank" class="btn btn-light text-dark fw-semibold">Leer más</a>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselNoticias" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselNoticias" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+</div>

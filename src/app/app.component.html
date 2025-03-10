@@ -1,37 +1,77 @@
 <div class="d-flex flex-column min-vh-100">
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">PC Components</a>
+  <!-- Encabezado con Navbar personalizado -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient bg-dark shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold fs-4 text-info" href="#">
+          <img src="assets/img/logoPc.png" alt="Placa base" class="placa-img me-3" [style.max-height.px]="80">
+          <span  [innerHTML]="'PC' | miTexto"></span>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav gap-3">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/bienvenida">Inicio</a>
+              <a class="nav-link text-uppercase fw-semibold" routerLink="/bienvenida">
+                <i class="bi bi-house-door-fill"></i> Inicio
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/lista-componentes">Componentes</a>
+              <a class="nav-link text-uppercase fw-semibold" routerLink="/lista-componentes">
+                <i class="bi bi-collection"></i> Componentes
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/vista-interactiva">Vista Interactiva</a>
+              <a class="nav-link text-uppercase fw-semibold" routerLink="/vista-interactiva">
+                <i class="bi bi-mouse3-fill"></i> Vista Interactiva
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/acerca-de">Acerca de</a>
+              <a class="nav-link text-uppercase fw-semibold" routerLink="/pdf-viewer">
+                <i class="bi bi-book"></i> Guías y tutoriales
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-uppercase fw-semibold" routerLink="/acerca-de">
+                <i class="bi bi-info-circle-fill"></i> Acerca de
+              </a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
-  
+
   <main class="flex-grow-1 mb-5">
     <router-outlet></router-outlet>
   </main>
-  
-  <footer class="bg-dark text-white text-center py-3 mt-auto">
-    <p>Yohanna Gelo &copy; 2025 PC Components. Todos los derechos reservados.</p>
+
+  <!-- Footer -->
+  <footer class="bg-body-secondary text-center pt-4 mt-auto">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-1 mb-md-0">
+          <h5 [innerHTML]="'Contacto' | miTexto"></h5>
+          <p class="small">yohannagelo&#64;gmail.com</p>
+          
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h5 [innerHTML]="'Síguenos' | miTexto"></h5>
+          <a href="#" class="text-dark me-2"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-dark me-2"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="col-md-4">
+          <h5 [innerHTML]="'Enlaces útiles' | miTexto"></h5>
+          <a routerLink="/acerca-de" class="d-block text-dark small text-decoration-none">Acerca de</a>
+        </div>
+      </div>
+    </div>
+    <!-- Copyright pegado abajo -->
+    <div class="bg-dark text-light p-2 mt-1 bg-gradient bg-dark">
+      <p class="small mb-0">Yohanna Gelo &copy; 2025 PC Components. Todos los derechos reservados.</p>
+    </div>
   </footer>
 </div>
