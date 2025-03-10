@@ -34,8 +34,8 @@
             <label for="tipo" class="form-label">Tipo</label>
             <input [(ngModel)]="componente.tipo" type="text" class="form-control" id="tipo" name="tipo" required>
           </div>
-          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-          <a [routerLink]="['/detalle-componente', componente.id]" class="btn btn-secondary ms-2">Cancelar</a>
+          <button type="submit" class="btn btn-secondary">Guardar Cambios</button>
+          <a [routerLink]="['/detalle-componente', componente.id]" class="btn btn-dark ms-2">Cancelar</a>
         </form>
       </div>
     </div>

@@ -23,6 +23,7 @@ https://ruizgijon.ddns.net/coliney/api_pc/api.php
 
 ## **Endpoints**
 
+
 ### **1. Obtener todos los componentes**
 
 #### **Método**: `GET`

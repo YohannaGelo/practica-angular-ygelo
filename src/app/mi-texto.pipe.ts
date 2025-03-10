@@ -11,7 +11,7 @@ export class MiTextoPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
 
   transform(value: string): SafeHtml {
-    const html = `<span style="color: #ff69b4; font-variant: small-caps; font-weight: 600; font-family: sans-serif;">${value}</span>`;
+    const html = `<span style="color: #ff69b4; font-variant: small-caps; font-family: sans-serif;">${value}</span>`;
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }

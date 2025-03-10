@@ -14,8 +14,8 @@
 
 /* Cambia el color de fondo y el texto del elemento activo */
 .pagination .page-item.active .page-link {
-  background-color: #000000;
-  border-color: #000000;
+  background-color: #ff69b4;
+  border-color: #ff69b4;
   color: white;
 }
 

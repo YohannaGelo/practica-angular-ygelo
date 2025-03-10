@@ -1,8 +1,8 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col text-center">
-            <h1>Componentes de un ordenador</h1>
-            <p>Pasa el ratón sobre la placa y descubre el lugar de cada componente.</p>
+            <h1 class="display-5">Componentes de un ordenador</h1>
+            <p [innerHTML]="'Pasa el ratón sobre la placa y descubre el lugar de cada componente.' | miTexto"></p>
         </div>
     </div>
     <div class="row">
@@ -10,7 +10,7 @@
             <!-- Contenedor de la placa base -->
             <div class="placa-container">
                 <!-- Imagen de la placa base -->
-                <img src="img/placa-base.jpg" alt="Placa base" class="placa-img">
+                <img src="img/placa-base.jpg" alt="Placa base" class="placa-img" [style.max-height.px]="600">
 
                 <!-- Componentes interactivos -->
                 <a [routerLink]="['/lista-componentes']" class="text-decoration-none">
@@ -22,7 +22,6 @@
                     </div>
                 </a>
 
-  
                 <!-- Tooltip -->
                 <div *ngIf="tooltipVisible" class="tooltip bg-white border rounded shadow p-3" [ngStyle]="tooltipStyle">
                     <h2 class="display-6 mb-3">{{ componenteSeleccionado?.tipo }}</h2>

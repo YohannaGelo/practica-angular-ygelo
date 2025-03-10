@@ -1,4 +1,4 @@
-<div class="container mt-5 d-flex flex-column align-items-center">
+<div class="container mt-5 d-flex flex-column align-items-center justify-content-center ">
   <div *ngIf="isLoading" class="text-center">
     <div class="spinner-border text-primary" role="status">
       <span class="visually-hidden">Cargando...</span>
@@ -27,8 +27,8 @@
           <p class="card-text"><strong>Descripción:</strong> {{ componente.descripcion }}</p>
           <!-- Botones de acciones -->
           <div class="mt-4">
-            <button (click)="editarComponente()" class="btn btn-warning me-2">Editar</button>
-            <button (click)="eliminarComponente()" class="btn btn-danger">Eliminar</button>
+            <button (click)="editarComponente()" class="btn btn-secondary me-2">Editar</button>
+            <button (click)="eliminarComponente()" class="btn btn-dark">Eliminar</button>
           </div>
         </div>
       </div>
@@ -36,5 +36,5 @@
 
     </div>
   </div>
-  <a [routerLink]="['/lista-componentes']" class="btn btn-secondary ms-2 mt-5 w-25">Cancelar</a>
+  <a [routerLink]="['/lista-componentes']" class="btn btn-outline-dark ms-2 mt-5 w-25">Cancelar</a>
 </div>
