@@ -6,6 +6,7 @@ import { ListaComponentesComponent } from './lista-componentes/lista-componentes
 import { DetalleComponenteComponent } from './detalle-componente/detalle-componente.component';
 import { EditarComponenteComponent } from './editar-componente/editar-componente.component';
 import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component';
+import { VistaInteractivaComponent } from './vista-interactiva/vista-interactiva.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'lista-componentes', component: ListaComponentesComponent },
   { path: 'detalle-componente/:id', component: DetalleComponenteComponent },
   { path: 'editar-componente/:id', component: EditarComponenteComponent },
+  { path: 'vista-interactiva', component: VistaInteractivaComponent },
   { path: '**', component: PaginaNoEncontradaComponent }
 ];
 

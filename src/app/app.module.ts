@@ -13,6 +13,7 @@ import { DetalleComponenteComponent } from './detalle-componente/detalle-compone
 import { ListaComponentesComponent } from './lista-componentes/lista-componentes.component';
 import { EditarComponenteComponent } from './editar-componente/editar-componente.component';
 import { MiTextoPipe } from './mi-texto.pipe';
+import { VistaInteractivaComponent } from './vista-interactiva/vista-interactiva.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MiTextoPipe } from './mi-texto.pipe';
     DetalleComponenteComponent,
     ListaComponentesComponent,
     EditarComponenteComponent,
-    MiTextoPipe
+    MiTextoPipe,
+    VistaInteractivaComponent
   ],
   imports: [
     BrowserModule,

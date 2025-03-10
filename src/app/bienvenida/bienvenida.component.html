@@ -1,50 +1,31 @@
 <div class="container mt-5">
-    <div class="row">
-        <div class="col text-center">
-            <h1 class="display-5">Componentes de un ordenador</h1>
-            <p [innerHTML]="'Pasa el ratón sobre la placa y descubre el lugar de cada componente.' | miTexto"></p>
-        </div>
+    <!-- Introducción a la página -->
+    <div class="row mb-4">
+      <div class="col text-center">
+        <h1 class="display-4">Noticias de Tecnología</h1>
+        <p class="lead">Mantente al día con las últimas noticias sobre tecnología e innovación.</p>
+      </div>
     </div>
-    <div class="row">
-        <div class="col text-center">
-            <!-- Contenedor de la placa base -->
-            <div class="placa-container">
-                <!-- Imagen de la placa base -->
-                <img src="img/placa-base.jpg" alt="Placa base" class="placa-img" [style.max-height.px]="600">
-
-                <!-- Componentes interactivos -->
-                <a [routerLink]="['/lista-componentes']" class="text-decoration-none">
-                <div *ngFor="let componente of componentes" class="componente {{ componente.tipo.toLowerCase() }}"
-                    (mouseenter)="mostrarTooltip(componente, $event)" (mouseleave)="ocultarTooltip()"
-                    (mousemove)="actualizarTooltip($event)">
-                    <!-- <span>{{ componente.tipo }}</span> -->
-                        
-                    </div>
-                </a>
-
-                <!-- Tooltip -->
-                <div *ngIf="tooltipVisible" class="tooltip bg-white border rounded shadow p-3" [ngStyle]="tooltipStyle">
-                    <h2 class="display-6 mb-3">{{ componenteSeleccionado?.tipo }}</h2>
-                    <table class="table table-hover">
-                        <tbody>
-                            <tr *ngFor="let componente of componentesFiltrados" (click)="verDetalle(componente.id)">
-                                <td class="align-middle">
-                                    <img [src]="componente.url_imagen" class="img-thumbnail"
-                                        style="width: 50px; height: auto;">
-                                </td>
-                                <td class="align-middle">
-                                    <a [routerLink]="['/detalle-componente', componente.id]"
-                                        class="text-decoration-none fw-semibold fs-5 text-dark">
-                                        {{ componente.nombre }}
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-
-            </div>
+  
+    <!-- Carrusel de noticias -->
+    <div id="carouselNoticias" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div *ngFor="let noticia of noticias; let i = index" class="carousel-item" [class.active]="i === 0">
+          <img [src]="noticia.urlToImage" class="d-block w-100" [alt]="noticia.title" style="max-height: 400px; object-fit: cover;">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-3 rounded">
+            <h5>{{ noticia.title }}</h5>
+            <p>{{ noticia.description }}</p>
+            <a [href]="noticia.url" target="_blank" class="btn btn-primary">Leer más</a>
+          </div>
         </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselNoticias" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselNoticias" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
     </div>
-</div>
+  </div>

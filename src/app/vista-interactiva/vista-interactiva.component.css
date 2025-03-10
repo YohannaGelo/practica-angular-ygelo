@@ -1,0 +1,162 @@
+/* Estilos generales */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: rgb(245, 245, 245);
+}
+
+h1 {
+  text-align: center;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+
+p {
+  text-align: center;
+}
+
+/* Contenedor de la placa base */
+.placa-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  /* Ancho máximo de la placa base */
+  margin: 0 auto;
+}
+
+/* Imagen de la placa base */
+.placa-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Estilos para los componentes */
+.componente {
+  /* background-color: #f00; */
+  opacity: 40%;
+  border-radius: 15px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+
+}
+
+/* Estilos para el tooltip */
+.tooltip {
+  text-align: center;
+  background-color: yellow;
+  /* height: 300px;
+  width: 400px; */
+  height: 40vh;
+  width: 35vw;
+  opacity: 95%;
+  border-radius: 10px;
+  position: absolute;
+  visibility: visible;
+  padding: 5px 20px 20px 20px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media screen and (max-width: 992px) {
+  .tooltip {
+    height: 30vh;
+    width: 20vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tooltip {
+    height: 10vh;
+    width: 10vw;
+  }
+}
+
+.img-comp {
+  width: auto;
+  height: 200px;
+  border-radius: 5px;
+}
+
+/* Estilos específicos para cada tipo de componente */
+.placa {
+  /* background-color: rgb(136, 255, 0); */
+  height: 92%;
+  /* Altura relativa a la placa base */
+  width: 95%;
+  /* Ancho relativo a la placa base */
+  top: 6%;
+  /* Posición relativa a la placa base */
+  left: 2.5%;
+  /* Posición relativa a la placa base */
+  z-index: 0;
+  cursor: cell;
+}
+
+.cpu {
+  background-color: rgb(255, 221, 0);
+  height: 23%;
+  width: 25%;
+  top: 43%;
+  left: 58%;
+}
+
+.gpu {
+  background-color: rgb(225, 164, 58);
+  height: 47%;
+  width: 3.7%;
+  top: 22%;
+  left: 20%;
+}
+
+.ram {
+  background-color: rgb(59, 191, 36);
+  height: 17%;
+  width: 46%;
+  top: 72%;
+  left: 48.5%;
+}
+
+.ssd {
+  background-color: rgb(200, 160, 240);
+  height: 17%;
+  width: 3%;
+  top: 80%;
+  left: 4%;
+}
+
+.refrigeración {
+  background-color: aqua;
+  height: 17%;
+  width: 14%;
+  top: 45%;
+  left: 63%;
+  z-index: 2;
+}
+
+.conexiones {
+  background-color: rgb(202, 202, 202);
+  height: 14%;
+  width: 46%;
+  top: 3%;
+  left: 50%;
+}
+
+.psu {
+  background-color: rgb(240, 160, 197);
+  height: 6%;
+  width: 18%;
+  top: 91%;
+  left: 58.5%;
+}
