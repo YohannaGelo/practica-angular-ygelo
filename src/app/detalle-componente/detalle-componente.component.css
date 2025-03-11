@@ -1,0 +1,14 @@
+/* Botón Agregar */
+.btn-outline-pink {
+    color: #ff69b4;
+    border-color: #ff69b4;
+}
+
+.btn-outline-pink:hover {
+    background-color: #ff69b4;
+    color: #fff;
+}
+
+.text-pink {
+    color: #ff69b4;
+}

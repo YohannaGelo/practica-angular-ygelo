@@ -1,29 +1,40 @@
-<div class="container mt-5">
+<div class="container mt-5 d-flex flex-column justify-content-between h-auto">
     <div class="row">
         <div class="col text-center">
-            <h1 class="display-4">Acerca de</h1>
-            <p class="lead">Esta es una aplicación desarrollada como proyecto final para la asignatura de
-                <strong>Desarrollo Web en Entorno Cliente</strong> de 2º de DAW.</p>
+            <h1 class="display-5">Acerca de</h1>
+            <p class="lead"  [innerHTML]="'Esta es una aplicación desarrollada como proyecto final para la asignatura de Desarrollo Web en Entorno Cliente de 2º de DAW.' | miTexto"></p>
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-md-6">
+    <div class="container-fluid p-0 my-2 shadow-sm">
+      <div class="ratio ratio-16x9" style="height: 270px; overflow: hidden; border-radius: 15px;">
+        <iframe
+          src="https://www.youtube.com/embed/KlfexRadBKw"
+          title="YouTube video"
+          style="object-fit: cover;"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+    
 
-            <h2 class="mb-3" [innerHTML]="'¿Por qué esta aplicación?' | miTexto"></h2>
-            <p>
+    <div class="row mt-4">
+        <div class="col-md-6 ps-5">
+
+            <h2 class="mb-3">¿Por qué esta aplicación?</h2>
+            <p class="w-75">
                 Esta aplicación fue creada para gestionar componentes de ordenadores, permitiendo realizar operaciones
                 CRUD (Crear, Leer, Actualizar y Eliminar) a través de una API en PHP. El objetivo es demostrar las
                 habilidades adquiridas en el desarrollo de aplicaciones web con Angular.
             </p>
-            <div class="d-flex flex-column align-items-center">
-                <img src="assets/img/codigo.gif" alt="Placa base" class="img-fluid mt-3" [style.height.px]="150">
+            <div class="">
+                <img src="assets/img/codigo.gif" alt="Placa base" class="img-fluid ms-5" [style.height.px]="150">
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 ps-5 ps-md-0">
             <h2 class="mb-3">Sobre mí</h2>
-            <p>
-                ¡Hola! Soy <strong>Yohanna Gelo</strong>, estudiante de Desarrollo de Aplicaciones Web (DAW). Me
+            <p class="w-75">
+                ¡Hola! Soy <strong [innerHTML]="'Yohanna Gelo' | miTexto"></strong>, estudiante de Desarrollo de Aplicaciones Web (DAW). Me
                 apasiona el desarrollo frontend y backend, y este proyecto es una muestra de lo que he aprendido.
             </p>
             <div class="mt-4">
@@ -31,13 +42,13 @@
                 <p>Puedes encontrarme en:</p>
                 <ul class="list-unstyled">
                     <li class="mb-2">
-                        <a href="#" target="_blank" class="text-decoration-none">
+                        <a href="https://www.linkedin.com/in/yohannagelo/" target="_blank" class="text-decoration-none">
                           <i class="bi bi-linkedin me-2 text-dark"></i>
                           <span [innerHTML]="'LinkedIn' | miTexto"></span>
                         </a>
                       </li>
                       <li class="mb-2">
-                        <a href="#" target="_blank" class="text-decoration-none">
+                        <a href="https://www.instagram.com/yohannagelo/" target="_blank" class="text-decoration-none">
                           <i class="bi bi-instagram me-2 text-dark"></i>
                           <span [innerHTML]="'Instagram' | miTexto"></span>
                         </a>

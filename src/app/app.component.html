@@ -6,7 +6,7 @@
       <div class="container">
         <a class="navbar-brand fw-bold fs-4 text-info" href="#">
           <img src="assets/img/logoPc.png" alt="Placa base" class="placa-img me-3" [style.max-height.px]="80">
-          <span  [innerHTML]="'PC' | miTexto"></span>
+          <span  [innerHTML]="'GeloTech' | miTexto" class="fw-medium"></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -58,10 +58,10 @@
           
         </div>
         <div class="col-md-4 mb-3 mb-md-0">
-          <h5 [innerHTML]="'Síguenos' | miTexto"></h5>
-          <a href="#" class="text-dark me-2"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="text-dark me-2"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
+          <h5 [innerHTML]="'Sígueme' | miTexto"></h5>
+          <a href="https://www.linkedin.com/in/yohannagelo/" class="text-dark me-2"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.instagram.com/yohannagelo/" class="text-dark me-2"><i class="bi bi-instagram"></i></a>
+          <a href="mailto:yohannagelo@gmail.com" class="text-dark"><i class="bi bi-envelope"></i></a>
         </div>
         <div class="col-md-4">
           <h5 [innerHTML]="'Enlaces útiles' | miTexto"></h5>
@@ -71,7 +71,7 @@
     </div>
     <!-- Copyright pegado abajo -->
     <div class="bg-dark text-light p-2 mt-1 bg-gradient bg-dark">
-      <p class="small mb-0">Yohanna Gelo &copy; 2025 PC Components. Todos los derechos reservados.</p>
+      <p class="small mb-0">&copy; 2025 <span [innerHTML]="'GeloTech.' | miTexto"></span> Todos los derechos reservados.</p>
     </div>
   </footer>
 </div>

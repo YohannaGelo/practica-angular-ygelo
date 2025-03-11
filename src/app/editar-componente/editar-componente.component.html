@@ -1,48 +1,58 @@
-<div class="container mt-5">
-    <div *ngIf="isLoading" class="text-center">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Cargando...</span>
-      </div>
-      <p class="mt-2">Cargando detalles del componente...</p>
+<div class="container mt-5 d-flex flex-column align-items-center justify-content-center">
+
+  <h1 class="display-5 text-center mb-5 animate__animated animate__fadeInUp">
+    Editar Componente
+  </h1>
+
+  <!-- Loader -->
+  <div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
     </div>
-  
-    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-      {{ errorMessage }}
-    </div>
-  
-    <div *ngIf="componente && !isLoading" class="card">
-      <div class="card-body">
-        <h2 class="card-title">Editar Componente</h2>
-        <form (ngSubmit)="guardarCambios()">
-          <!-- Campo oculto para el ID -->
-          <input type="hidden" [(ngModel)]="componente.id" name="id">
-  
-          <!-- Campos editables -->
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input [(ngModel)]="componente.nombre" type="text" class="form-control" id="nombre" name="nombre" required>
+    <p class="mt-3 fs-5 text-muted">Cargando detalles del componente...</p>
+  </div>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="alert alert-danger text-center fs-5 w-75" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <!-- formulario -->
+  <div *ngIf="componente && !isLoading" class="card col-md-9 shadow">
+    <div class="card-body">
+      <form (ngSubmit)="guardarCambios()">
+        <!-- Campo oculto para el ID -->
+        <input type="hidden" [(ngModel)]="componente.id" name="id">
+
+        <!-- Campos editables -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label" [innerHTML]="'Nombre' | miTexto"></label>
+          <input [(ngModel)]="componente.nombre" type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="mb-3">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <textarea [(ngModel)]="componente.descripcion" class="form-control" id="descripcion" name="descripcion"
+            rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="url_imagen" class="form-label">URL de la Imagen</label>
+          <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-2">
+            <img *ngIf="componente.url_imagen" [src]="componente.url_imagen" alt="Imagen de vista previa"
+              class="img-thumbnail me-2" style="width: 80px; height: 80px; object-fit: cover;">
+            <input [(ngModel)]="componente.url_imagen" type="text" class="form-control" id="url_imagen"
+              name="url_imagen" required>
           </div>
-          <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <textarea [(ngModel)]="componente.descripcion" class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="url_imagen" class="form-label">URL de la Imagen</label>
-            <div class="d-flex align-items-center">
-              <img *ngIf="componente.url_imagen" [src]="componente.url_imagen" alt="Imagen de vista previa" class="img-thumbnail me-2" style="width: 80px; height: 80px; object-fit: cover;">
-              <input [(ngModel)]="componente.url_imagen" type="text" class="form-control" id="url_imagen" name="url_imagen" required>
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="tipo" class="form-label">Tipo</label>
-            <select [(ngModel)]="componente.tipo_id" class="form-control" id="tipo_id" name="tipo_id">
-              <option value="">Selecciona un tipo</option>
-              <option *ngFor="let tipo of tiposComponentes" [value]="tipo.id">{{ tipo.nombre }}</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-secondary">Guardar Cambios</button>
-          <a [routerLink]="['/detalle-componente', componente.id]" class="btn btn-dark ms-2">Cancelar</a>
-        </form>
-      </div>
+        </div>
+        <div class="mb-3">
+          <label for="tipo" class="form-label">Tipo</label>
+          <select [(ngModel)]="componente.tipo_id" class="form-control" id="tipo_id" name="tipo_id">
+            <option value="">Selecciona un tipo</option>
+            <option *ngFor="let tipo of tiposComponentes" [value]="tipo.id">{{ tipo.nombre }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-secondary">Guardar Cambios</button>
+        <a [routerLink]="['/detalle-componente', componente.id]" class="btn btn-outline-pink ms-2">Cancelar</a>
+      </form>
     </div>
   </div>
+</div>

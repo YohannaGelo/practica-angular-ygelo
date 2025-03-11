@@ -1,40 +1,56 @@
-<div class="container mt-5 d-flex flex-column align-items-center justify-content-center ">
+<div class="container mt-5 d-flex flex-column align-items-center justify-content-center">
+
+  <h1 class="display-5 text-center mb-5 animate__animated animate__fadeInUp">
+    Detalles del Componente
+  </h1>
+
+  <!-- Loader -->
   <div *ngIf="isLoading" class="text-center">
     <div class="spinner-border text-primary" role="status">
       <span class="visually-hidden">Cargando...</span>
     </div>
-    <p class="mt-2">Cargando detalles del componente...</p>
+    <p class="mt-3 fs-5 text-muted">Cargando detalles del componente...</p>
   </div>
 
-  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="alert alert-danger text-center fs-5 w-75" role="alert">
     {{ errorMessage }}
   </div>
 
-  <div *ngIf="componente && !isLoading" class="card col-md-8">
-    <div class="row g-0">
-      <!-- Imagen del componente -->
-      <div class="col-md-4">
-        <img [src]="componente.url_imagen" class="img-fluid rounded-start" alt="{{ componente.nombre }}"
-          [style.max-height.px]="250">
-
-
+  <!-- Tarjeta del componente -->
+  <div *ngIf="componente && !isLoading" class="card shadow border-0 rounded-4 col-md-9">
+    <div class="row g-0 align-items-stretch">
+      <!-- Imagen del componente ajustada a la altura -->
+      <div class="col-md-5" >
+        <img [src]="componente.url_imagen" class="img-fluid rounded-start w-100 h-100 object-fit-cover"
+          alt="{{ componente.nombre }}" style="max-height: 250px; min-height: 100%;">
       </div>
+
       <!-- Detalles del componente -->
-      <div class="col-md-8">
-        <div class="card-body">
-          <h2 class="card-title">{{ componente.nombre }}</h2>
-          <p class="card-text"><strong>Tipo:</strong> {{ componente.tipo_nombre }}</p>
-          <p class="card-text"><strong>Descripción:</strong> {{ componente.descripcion }}</p>
-          <!-- Botones de acciones -->
-          <div class="mt-4">
-            <button (click)="editarComponente()" class="btn btn-secondary me-2">Editar</button>
-            <button (click)="eliminarComponente()" class="btn btn-dark">Eliminar</button>
+      <div class="col-md-7 bg-light p-3 rounded-end">
+        <div class="card-body d-flex flex-column justify-content-center h-100">
+          <h2 class="card-title display-6 fw-semibold mb-4">
+            <i class="bi bi-cpu me-2 text-pink"></i> {{ componente.nombre }}
+          </h2>
+          <p class="card-text fs-5"><i class="bi bi-tag me-2 text-secondary"></i><strong>Tipo:</strong> {{ componente.tipo_nombre }}</p>
+          <p class="card-text fs-5"><i class="bi bi-file-text me-2 text-secondary"></i><strong>Descripción:</strong> {{ componente.descripcion }}</p>
+
+          <!-- Botones de acción -->
+          <div class="mt-5 d-flex justify-content-center gap-3">
+            <button (click)="editarComponente()" class="btn btn-outline-secondary px-4 py-2 fs-5">
+              <i class="bi bi-pencil-square me-2"></i>Editar
+            </button>
+            <button (click)="eliminarComponente()" class="btn btn-dark px-4 py-2 fs-5">
+              <i class="bi bi-trash me-2"></i>Eliminar
+            </button>
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
-  <a [routerLink]="['/lista-componentes']" class="btn btn-outline-dark ms-2 mt-5 w-25">Cancelar</a>
+
+  <!-- Botón de cancelar -->
+  <a [routerLink]="['/lista-componentes']" class="btn btn-outline-pink mt-5 fs-5 px-5 py-2">
+    Volver a la lista
+  </a>
 </div>
