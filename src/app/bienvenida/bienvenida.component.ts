@@ -19,8 +19,8 @@ export class BienvenidaComponent implements OnInit {
   cargarNoticias(): void {
     this.noticiasService.getNoticias().subscribe(
       (data: any) => {
-        this.noticias = data.articles; // Asigna las noticias a la variable
-
+        this.noticias = data.news; // Ahora accedemos a la propiedad 'news' de la respuesta
+  
         // Reordenar las noticias en posiciones aleatorias
         this.noticias.sort(() => Math.random() - 0.5); // Esto mezcla el array de noticias
       },
@@ -29,4 +29,5 @@ export class BienvenidaComponent implements OnInit {
       }
     );
   }
+  
 }
