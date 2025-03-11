@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { AcercaDeComponent } from './acerca-de/acerca-de.component';
 import { ListaComponentesComponent } from './lista-componentes/lista-componentes.component';
@@ -8,6 +8,7 @@ import { EditarComponenteComponent } from './editar-componente/editar-componente
 import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component';
 import { VistaInteractivaComponent } from './vista-interactiva/vista-interactiva.component';
 import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 const routes: Routes = [
@@ -22,8 +23,16 @@ const routes: Routes = [
   { path: '**', component: PaginaNoEncontradaComponent }
 ];
 
+const routerOptions: ExtraOptions = {
+  useHash: true // Esto activa la estrategia HashLocation
+};
+
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }  // Configuración para usar HashLocationStrategy
+  ]
 })
 export class AppRoutingModule { }
