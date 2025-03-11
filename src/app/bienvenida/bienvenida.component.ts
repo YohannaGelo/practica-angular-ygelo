@@ -19,10 +19,8 @@ export class BienvenidaComponent implements OnInit {
   cargarNoticias(): void {
     this.noticiasService.getNoticias().subscribe(
       (data: any) => {
-        this.noticias = data.news; // Ahora accedemos a la propiedad 'news' de la respuesta
-  
-        // Reordenar las noticias en posiciones aleatorias
-        this.noticias.sort(() => Math.random() - 0.5); // Esto mezcla el array de noticias
+        this.noticias = data.news; // Asigna las noticias a la variable
+        this.noticiasService.saveNoticias(this.noticias); // Guarda las noticias en el localStorage
       },
       (error) => {
         console.error('Error al cargar noticias:', error);

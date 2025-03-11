@@ -12,7 +12,7 @@
 .mi-bg {
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.500), rgba(0, 0, 0, 0.500)), 
-    url('/assets/img/placa-base.jpg');
+    url('/coliney/geloTech/assets/img/placa-base.jpg');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; 
