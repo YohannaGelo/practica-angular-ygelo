@@ -20,43 +20,43 @@ export class PdfViewerComponent implements OnInit {
       {
         name: 'Aprende sobre Chasis',
         url: this.sanitizer.bypassSecurityTrustResourceUrl(
-          '/assets/pdfs/aprendeChasis.pdf'
+          'https://drive.google.com/file/d/1NQbw_U4hz9g9GnPH1cmvBhqhaCHpwJpH/preview'
         ),
       },
       {
-        name: 'Aprende sobre Conectores',
+        name: 'Guía sobre Conectores',
         url: this.sanitizer.bypassSecurityTrustResourceUrl(
-          '/assets/pdfs/aprendeConectores.pdf'
+          'https://drive.google.com/file/d/1Ijeizuw7FHM7lj7D3SGWes-myhOzaCPU/preview'
         ),
       },
       {
-        name: 'Aprende sobre HDD',
+        name: 'Guía sobre HDD',
         url: this.sanitizer.bypassSecurityTrustResourceUrl(
-          '/assets/pdfs/aprendeHDD.pdf'
+          'https://drive.google.com/file/d/1RAFSDJBrxebnRyN5iBrr37cIB-PdMRdZ/preview'
         ),
       },
       {
         name: 'Mantenimiento de Periféricos',
         url: this.sanitizer.bypassSecurityTrustResourceUrl(
-          '/assets/pdfs/mantenimientoPerifericos.pdf'
+          'https://drive.google.com/file/d/1AasZzx6GyT4h4rZ69OS1xc2vJCigxAob/preview'
         ),
       },
       {
         name: 'Montaje de PC de Sobremesa',
         url: this.sanitizer.bypassSecurityTrustResourceUrl(
-          '/assets/pdfs/montajePcSobremesa.pdf'
+          'https://drive.google.com/file/d/1OY_glRcHF-reOxx0Pa877QY2p5U2t8HR/preview'
         ),
       },
       {
         name: 'Nuevas Tendencias',
         url: this.sanitizer.bypassSecurityTrustResourceUrl(
-          '/assets/pdfs/nuevasTendencias.pdf'
+          'https://drive.google.com/file/d/19ETs5pBjMbMRIavrNK0tscYxcHv_ueCU/preview'
         ),
       },
       {
         name: 'Reparación de Portátiles',
         url: this.sanitizer.bypassSecurityTrustResourceUrl(
-          '/assets/pdfs/reparacionPortatil.pdf'
+          'https://drive.google.com/file/d/1sW64i5MIONAo1QzwSxB2giwHzE_8ilwo/preview'
         ),
       },
     ];
@@ -65,4 +65,6 @@ export class PdfViewerComponent implements OnInit {
   selectPdf(index: number): void {
     this.selectedPdfIndex = index;
   }
+
+  
 }
