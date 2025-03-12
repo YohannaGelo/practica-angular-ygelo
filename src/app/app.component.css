@@ -6,3 +6,10 @@ a {
   a:hover {
     transform: scale(1.1);
   }
+
+  @media (max-width: 768px) {
+    .navbar-nav .nav-link {
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem; 
+    }
+  }

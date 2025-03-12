@@ -24,23 +24,28 @@
                 <div *ngIf="tooltipVisible" class="tooltip bg-white border rounded shadow p-3" [ngStyle]="tooltipStyle"
                     (mouseenter)="evitarOcultarTooltip()" (mouseleave)="ocultarTooltip()">
 
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center flex-column flex-sm-row">
                         <!-- Imagen del componente -->
-                        <div class="me-3">
+                        <div class="me-sm-3 mb-3 mb-sm-0">
                             <img [src]="componenteSeleccionado?.tipo_imagen_url" class="rounded-circle border"
-                                style="width: 100px; height: 100px; object-fit: contain;">
+                                style="width: 80px; height: 80px; object-fit: cover;">
                         </div>
 
                         <div>
                             <!-- Nombre del componente -->
-                            <h6 class="fw-bold mb-1 text-start">{{ componenteSeleccionado?.tipo_nombre }}</h6>
+                            <h6 class="fw-bold mb-1 text-center text-sm-start">{{ componenteSeleccionado?.tipo_nombre }}
+                            </h6>
                             <!-- Descripción del componente -->
-                            <p class=" text-muted mb-0 text-start">{{ componenteSeleccionado?.descripcion_educativa }}</p>
+                            <p class="text-muted mb-0 text-center text-sm-start">{{
+                                componenteSeleccionado?.descripcion_educativa }}</p>
                         </div>
                     </div>
+
                     <!-- Botón para cerrar el tooltip en dispositivos táctiles -->
-                    <button *ngIf="isTouchDevice" class="btn btn-dark mt-3" (click)="cerrarTooltip()">Cerrar</button>
+                    <button *ngIf="isTouchDevice" class="btn btn-dark mt-3 w-100"
+                        (click)="cerrarTooltip()">Cerrar</button>
                 </div>
+
 
 
             </div>

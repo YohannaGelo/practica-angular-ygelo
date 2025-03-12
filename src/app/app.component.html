@@ -1,48 +1,48 @@
 <div class="d-flex flex-column min-vh-100">
 
-  <!-- Encabezado con Navbar personalizado -->
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient bg-dark shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold fs-4 text-info" href="#">
-          <img src="assets/img/logoPc.png" alt="Placa base" class="placa-img me-3" [style.max-height.px]="80">
-          <span  [innerHTML]="'GeloTech' | miTexto" class="fw-medium"></span>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-          <ul class="navbar-nav gap-3">
-            <li class="nav-item">
-              <a class="nav-link text-uppercase fw-semibold" routerLink="/bienvenida">
-                <i class="bi bi-house-door-fill"></i> Inicio
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-uppercase fw-semibold" routerLink="/lista-componentes">
-                <i class="bi bi-collection"></i> Componentes
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-uppercase fw-semibold" routerLink="/vista-interactiva">
-                <i class="bi bi-mouse3-fill"></i> Vista Interactiva
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-uppercase fw-semibold" routerLink="/pdf-viewer">
-                <i class="bi bi-book"></i> Guías y tutoriales
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-uppercase fw-semibold" routerLink="/acerca-de">
-                <i class="bi bi-info-circle-fill"></i> Acerca de
-              </a>
-            </li>
-          </ul>
-        </div>
+<!-- Encabezado con Navbar personalizado -->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-gradient bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4 text-info" href="#">
+        <img src="assets/img/logoPc.png" alt="Placa base" class="placa-img me-3" [style.max-height.px]="80">
+        <span [innerHTML]="'GeloTech' | miTexto" class="fw-medium"></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav gap-2 gap-md-3">
+          <li class="nav-item">
+            <a class="nav-link text-uppercase fw-semibold fs-md-6" routerLink="/bienvenida">
+              <i class="bi bi-house-door-fill d-none d-md-inline"></i> Inicio
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase fw-semibold fs-md-6" routerLink="/lista-componentes">
+              <i class="bi bi-collection d-none d-md-inline"></i> Componentes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase fw-semibold fs-md-6" routerLink="/vista-interactiva">
+              <i class="bi bi-mouse3-fill d-none d-md-inline"></i> Vista Interactiva
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase fw-semibold fs-md-6" routerLink="/pdf-viewer">
+              <i class="bi bi-book d-none d-md-inline"></i> Guías
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase fw-semibold fs-md-6" routerLink="/acerca-de">
+              <i class="bi bi-info-circle-fill d-none d-md-inline"></i> Acerca de
+            </a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
 
   <main class="flex-grow-1 mb-5">
     <router-outlet></router-outlet>

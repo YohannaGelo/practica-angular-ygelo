@@ -73,9 +73,14 @@ export class VistaInteractivaComponent implements OnInit {
     ) as HTMLElement;
     const placaRect = placaContainer.getBoundingClientRect();
 
-    const tooltipWidth = placaRect.width * (placaRect.height < 500 ? 0.5 : 0.3); // 50% si es menor a 500px, 30% si no
+    // Ajuste de medida del tooltip en base a la medida de la placa según la pantalla
+    const tooltipWidth =
+      placaRect.width *
+      (placaRect.height < 300 ? 0.50 : placaRect.height < 500 ? 0.5 : 0.3); // menor 300px = 50% / menor 500px = 50% / mayor = 30%
+
     const tooltipHeight =
-      placaRect.height * (placaRect.height < 500 ? 0.8 : 0.44); // 80% si es menor a 500px, 40% si no
+      placaRect.height *
+      (placaRect.height < 300 ? 1.5 : placaRect.height < 500 ? 0.8 : 0.44); 
 
     // Coordenadas relativas al componente padre
     const mouseX = clientX - placaRect.left;

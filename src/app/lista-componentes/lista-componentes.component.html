@@ -1,5 +1,5 @@
 <div class="container mt-5">
-
+  
   <div class="row mb-4">
     <div class="col text-center">
       <h2 class="display-5">Lista de Componentes</h2>
@@ -9,56 +9,57 @@
 
   <!-- Filtros -->
   <div class="row mb-3">
-    <div class="col-md-6 mb-3 mb-md-0">
+    <div class="col-12 col-md-6 mb-3 mb-md-0">
       <input [(ngModel)]="filtroNombre" type="text" class="form-control" placeholder="Buscar por nombre">
     </div>
-    <div class="col-md-6">
+    <div class="col-12 col-md-6">
       <input [(ngModel)]="filtroTipo" type="text" class="form-control" placeholder="Buscar por tipo">
     </div>
   </div>
 
   <!-- Tabla de componentes -->
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Imagen</th>
-        <th>Tipo</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Fila para agregar un nuevo componente -->
-      <tr>
-        <td><input [(ngModel)]="nuevoComponente.nombre" class="form-control" placeholder="Nombre"></td>
-        <td><input [(ngModel)]="nuevoComponente.descripcion" class="form-control" placeholder="Descripción"></td>
-        <td><input [(ngModel)]="nuevoComponente.url_imagen" class="form-control" placeholder="URL de la imagen"></td>
-        <td>
-          <!-- Desplegable para seleccionar el tipo de componente -->
-          <select [(ngModel)]="nuevoComponente.tipo_id" class="form-control">
-            <option value="">Selecciona un tipo</option>
-            <option *ngFor="let tipo of tiposComponentes" [value]="tipo.id">{{ tipo.nombre }}</option>
-          </select>
-        </td>
-        <td>
-          <button (click)="agregarComponente()" class="btn btn-outline-pink">Agregar</button>
-        </td>
-      </tr>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Imagen</th>
+          <th>Tipo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Fila para agregar un nuevo componente -->
+        <tr>
+          <td><input [(ngModel)]="nuevoComponente.nombre" class="form-control" placeholder="Nombre"></td>
+          <td><input [(ngModel)]="nuevoComponente.descripcion" class="form-control" placeholder="Descripción"></td>
+          <td><input [(ngModel)]="nuevoComponente.url_imagen" class="form-control" placeholder="URL de la imagen"></td>
+          <td>
+            <select [(ngModel)]="nuevoComponente.tipo_id" class="form-control">
+              <option value="">Selecciona un tipo</option>
+              <option *ngFor="let tipo of tiposComponentes" [value]="tipo.id">{{ tipo.nombre }}</option>
+            </select>
+          </td>
+          <td>
+            <button (click)="agregarComponente()" class="btn btn-outline-pink">Agregar</button>
+          </td>
+        </tr>
 
-      <!-- Filas de componentes -->
-      <tr *ngFor="let componente of componentesPaginados">
-        <td>{{ componente.nombre }}</td>
-        <td>{{ componente.descripcion }}</td>
-        <td><img [src]="componente.url_imagen" alt="{{ componente.nombre }}" style="width: 50px; height: auto;"></td>
-        <td>{{ componente.tipo_nombre }}</td>
-        <td>
-          <button (click)="verDetalles(componente.id)" class="btn btn-secondary btn-sm me-2 mt-1 mb-1">Detalles</button>
-          <button (click)="eliminarComponente(componente.id)" class="btn btn-dark btn-sm mt-1 mb-1">Eliminar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        <!-- Filas de componentes -->
+        <tr *ngFor="let componente of componentesPaginados">
+          <td>{{ componente.nombre }}</td>
+          <td>{{ componente.descripcion }}</td>
+          <td><img [src]="componente.url_imagen" alt="{{ componente.nombre }}" style="width: 50px; height: auto;"></td>
+          <td>{{ componente.tipo_nombre }}</td>
+          <td>
+            <button (click)="verDetalles(componente.id)" class="btn btn-secondary btn-sm me-2 mt-1 mb-1">Detalles</button>
+            <button (click)="eliminarComponente(componente.id)" class="btn btn-dark btn-sm mt-1 mb-1">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <!-- Paginación -->
   <nav aria-label="Paginación">

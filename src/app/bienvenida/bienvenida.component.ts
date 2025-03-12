@@ -17,15 +17,30 @@ export class BienvenidaComponent implements OnInit {
   }
 
   cargarNoticias(): void {
-    this.noticiasService.getNoticias().subscribe(
-      (data: any) => {
-        this.noticias = data.news; // Asigna las noticias a la variable
-        this.noticiasService.saveNoticias(this.noticias); // Guarda las noticias en el localStorage
-      },
-      (error) => {
-        console.error('Error al cargar noticias:', error);
-      }
-    );
+    // Intentamos obtener las noticias desde localStorage
+    const noticiasGuardadas = localStorage.getItem('noticias');
+
+    if (noticiasGuardadas) {
+      // Si encontramos noticias en localStorage, las usamos
+      this.noticias = JSON.parse(noticiasGuardadas);
+      this.mezclarNoticias();
+    } else {
+      // Si no hay noticias en localStorage, realizamos la solicitud a la API
+      this.noticiasService.getNoticias().subscribe(
+        (data: any) => {
+          this.noticias = data.news; // Asigna las noticias a la variable
+          this.mezclarNoticias();
+          this.noticiasService.saveNoticias(this.noticias); // Guarda las noticias en el localStorage
+        },
+        (error) => {
+          console.error('Error al cargar noticias:', error);
+        }
+      );
+    }
   }
-  
+
+    // Función para mezclar el array de noticias aleatoriamente
+    mezclarNoticias(): void {
+      this.noticias.sort(() => Math.random() - 0.5);
+    }
 }

@@ -42,14 +42,12 @@ export class ComponentesService {
     return this.http.post<Componente>(this.apiUrl, componente);
   }
 
-
   actualizarComponente(componente: Componente): Observable<Componente> {
     const url = `${this.apiUrl}`; // <-- No se incluye el id en la URL
     return this.http.put<Componente>(url, componente, {
       headers: { 'Content-Type': 'application/json' }
     });
   }
-
   
   eliminarComponente(id: number): Observable<void> {
     const url = `${this.apiUrl}`; // <-- No se incluye el id en la URL
