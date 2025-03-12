@@ -130,7 +130,7 @@ export class VistaInteractivaComponent implements OnInit {
     this.componentesFiltrados = this.componentes.filter(
       (componente) => componente.tipo_id === tipoId
     );
-    console.log('Componentes filtrados:', this.componentesFiltrados); // <-- Añade este console.log
+    console.log('Componentes filtrados:', this.componentesFiltrados);
   }
 
   verDetalle(id: number): void {

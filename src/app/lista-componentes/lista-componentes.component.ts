@@ -105,9 +105,11 @@ export class ListaComponentesComponent {
   get componentesFiltrados(): Componente[] {
     return this.componentes.filter(
       (componente) =>
+        // Comprueba si el nombre del componente contiene el texto del filtro (sin importar mayúsculas/minúsculas)
         componente.nombre
           .toLowerCase()
           .includes(this.filtroNombre.toLowerCase()) &&
+        // Comprueba si el tipo del componente contiene el texto del filtro (opcional, para evitar errores si es undefined o null)
         componente.tipo_nombre
           ?.toLowerCase()
           .includes(this.filtroTipo.toLowerCase())

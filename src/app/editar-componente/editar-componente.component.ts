@@ -56,18 +56,6 @@ export class EditarComponenteComponent implements OnInit {
     );
   }
 
-  // guardarCambios(): void {
-  //   this.componentesService.actualizarComponente(this.componente).subscribe(
-  //     () => {
-  //       this.router.navigate(['/detalle-componente', this.componente.id]); // Redirigir a la vista de detalles
-  //     },
-  //     (error) => {
-  //       this.errorMessage = 'Error al actualizar el componente.';
-  //       console.error(error);
-  //     }
-  //   );
-  // }
-
   guardarCambios(): void {
     this.componentesService.actualizarComponente(this.componente).subscribe(
       () => {
